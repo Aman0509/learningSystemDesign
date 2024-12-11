@@ -89,11 +89,9 @@ _This course is also available on my [website](https://karanpratapsingh.com/cour
 
 Before we start this course, let's talk about what even is system design.
 
-System design is the process of defining the architecture, interfaces, and data
-for a system that satisfies specific requirements. System design meets the needs
-of your business or organization through coherent and efficient systems. It requires
-a systematic approach to building and engineering systems. A good system design requires
-us to think about everything, from infrastructure all the way down to the data and how it's stored.
+System Design refers to the process of defining the architecture, components, modules, interfaces, and data flow of a system to satisfy specific requirements.System design meets the needs of your business or organization through coherent and efficient systems. It requires a systematic approach to building and engineering systems. A good system design requires us to think about everything, from infrastructure all the way down to the data and how it's stored. It involves planning the structure and behavior of a system to ensure it is efficient, scalable, reliable, and maintainable.
+
+System design encompasses both high-level architecture and low-level component design, depending on the problem's scope and the stage of development.
 
 ## Why is System Design so important?
 
@@ -101,6 +99,45 @@ System design helps us define a solution that meets the business requirements. I
 one of the earliest decisions we can make when building a system. Often it is essential
 to think from a high level as these decisions are very difficult to correct later. It
 also makes it easier to reason about and manage architectural changes as the system evolves.
+
+## Key Aspects of System Design:
+
+1. **Requirements Analysis**:
+
+- Understanding the functional and non-functional requirements (e.g., scalability, reliability, security).
+
+2. **High-Level Design (HLD)**:
+
+- Creating a blueprint of the overall system.
+- Includes decisions about the architecture (e.g., client-server, microservices, monolithic).
+- Identifying major components (e.g., databases, APIs, load balancers, caches).
+- Defining data flow and interactions between components.
+
+3. **Low-Level Design (LLD)**:
+
+- Detailed design of individual components.
+- Includes algorithms, data structures, and API specifications.
+- Focus on implementation details.
+
+4. **Scalability**:
+
+- Designing the system to handle increasing amounts of traffic or data without performance degradation.
+
+5. **Reliability**:
+
+- Ensuring the system can recover from failures and maintain consistent service.
+
+6. **Performance**:
+
+- Optimizing response times and throughput.
+
+7. **Security**:
+
+- Protecting data and system integrity from unauthorized access and attacks.
+
+8. **Maintainability and Extensibility**:
+
+- Designing the system for ease of updates, debugging, and adding new features.
 
 # IP
 
