@@ -191,6 +191,15 @@ A dynamic IP address changes from time to time and is not always the same. It ha
 
 _Example: They are more commonly used for consumer equipment and personal use._
 
+When a device fails to obtain an IP address from a DHCP server, it randomly selects an IP address from the APIPA (Automatic Private IP Addressing) range. The IP addresses assigned by APIPA fall within the range **169.254.0.0** to **169.254.255.255**.
+
+Readings:
+
+- [What is an IP Address – Definition and Explanation](https://www.kaspersky.com/resource-center/definitions/what-is-an-ip-address)
+- [What Is An IP Address? How Does It Work?](<https://www.fortinet.com/resources/cyberglossary/what-is-ip-address#:~:text=An%20Internet%20Protocol%20(IP)%20address,use%20the%20internet%20to%20communicate.>)
+- [Subnet Mask](https://www.youtube.com/watch?v=s_Ntt6eTn94)
+- [Basics of Computer Networking](https://www.geeksforgeeks.org/basics-computer-networking/)
+
 # OSI Model
 
 The OSI Model is a logical and conceptual model that defines network communication used by systems open to interconnection and communication with other systems. The Open System Interconnection (OSI Model) also defines a logical network and effectively describes computer packet transfer by using various layers of protocols.
