@@ -104,40 +104,40 @@ also makes it easier to reason about and manage architectural changes as the sys
 
 1. **Requirements Analysis**:
 
-    - Understanding the functional and non-functional requirements (e.g., scalability, reliability, security).
+   - Understanding the functional and non-functional requirements (e.g., scalability, reliability, security).
 
 2. **High-Level Design (HLD)**:
 
-    - Creating a blueprint of the overall system.
-    - Includes decisions about the architecture (e.g., client-server, microservices, monolithic).
-    - Identifying major components (e.g., databases, APIs, load balancers, caches).
-    - Defining data flow and interactions between components.
+   - Creating a blueprint of the overall system.
+   - Includes decisions about the architecture (e.g., client-server, microservices, monolithic).
+   - Identifying major components (e.g., databases, APIs, load balancers, caches).
+   - Defining data flow and interactions between components.
 
 3. **Low-Level Design (LLD)**:
 
-    - Detailed design of individual components.
-    - Includes algorithms, data structures, and API specifications.
-    - Focus on implementation details.
+   - Detailed design of individual components.
+   - Includes algorithms, data structures, and API specifications.
+   - Focus on implementation details.
 
 4. **Scalability**:
 
-    - Designing the system to handle increasing amounts of traffic or data without performance degradation.
+   - Designing the system to handle increasing amounts of traffic or data without performance degradation.
 
 5. **Reliability**:
 
-    - Ensuring the system can recover from failures and maintain consistent service.
+   - Ensuring the system can recover from failures and maintain consistent service.
 
 6. **Performance**:
 
-    - Optimizing response times and throughput.
+   - Optimizing response times and throughput.
 
 7. **Security**:
 
-    - Protecting data and system integrity from unauthorized access and attacks.
+   - Protecting data and system integrity from unauthorized access and attacks.
 
 8. **Maintainability and Extensibility**:
 
-    - Designing the system for ease of updates, debugging, and adding new features.
+   - Designing the system for ease of updates, debugging, and adding new features.
 
 # IP
 
@@ -252,6 +252,12 @@ The data link layer is very similar to the network layer, except the data link l
 
 This layer includes the physical equipment involved in the data transfer, such as the cables and switches. This is also the layer where the data gets converted into a bit stream, which is a string of 1s and 0s. The physical layer of both devices must also agree on a signal convention so that the 1s can be distinguished from the 0s on both devices.
 
+Readings:
+
+- [OSI Model Explained](https://www.youtube.com/watch?v=vv4y_uOneC0)
+- [OSI Model Simplified](https://www.youtube.com/watch?v=lomiPKIXdEo)
+- [OSI Model Layer 5, 6, and 7 -- Session, Presentation, & Application Layers -- what they actually do](https://www.youtube.com/watch?v=2iFFRqzX3yE)
+
 # TCP and UDP
 
 ## TCP
@@ -284,6 +290,11 @@ TCP provides ordered delivery of data from user to server (and vice versa), wher
 | Speed               | Slower than UDP                             | Faster than TCP                    |
 | Broadcasting        | Does not support broadcasting               | Supports broadcasting              |
 | Use cases           | HTTPS, HTTP, SMTP, POP, FTP, etc            | Video streaming, DNS, VoIP, etc    |
+
+Readings:
+
+- [TCP IP Model Explained](https://www.youtube.com/watch?v=2QGgEk20RXM)
+- [TCP/IP Model Explained | Cisco CCNA 200-301](https://www.youtube.com/watch?v=OTwp3xtd4dg)
 
 # Domain Name System (DNS)
 
@@ -403,6 +414,10 @@ These are some widely used managed DNS solutions:
 - [Google Cloud DNS](https://cloud.google.com/dns)
 - [Azure DNS](https://azure.microsoft.com/en-in/services/dns)
 - [NS1](https://ns1.com/products/managed-dns)
+
+Readings:
+
+- [What is DNS (Domain Name System)?](https://www.youtube.com/watch?v=nyH0nYhMW9M&t=14s)
 
 # Load Balancing
 
