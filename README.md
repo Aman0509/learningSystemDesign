@@ -104,40 +104,40 @@ also makes it easier to reason about and manage architectural changes as the sys
 
 1. **Requirements Analysis**:
 
-- Understanding the functional and non-functional requirements (e.g., scalability, reliability, security).
+    - Understanding the functional and non-functional requirements (e.g., scalability, reliability, security).
 
 2. **High-Level Design (HLD)**:
 
-- Creating a blueprint of the overall system.
-- Includes decisions about the architecture (e.g., client-server, microservices, monolithic).
-- Identifying major components (e.g., databases, APIs, load balancers, caches).
-- Defining data flow and interactions between components.
+    - Creating a blueprint of the overall system.
+    - Includes decisions about the architecture (e.g., client-server, microservices, monolithic).
+    - Identifying major components (e.g., databases, APIs, load balancers, caches).
+    - Defining data flow and interactions between components.
 
 3. **Low-Level Design (LLD)**:
 
-- Detailed design of individual components.
-- Includes algorithms, data structures, and API specifications.
-- Focus on implementation details.
+    - Detailed design of individual components.
+    - Includes algorithms, data structures, and API specifications.
+    - Focus on implementation details.
 
 4. **Scalability**:
 
-- Designing the system to handle increasing amounts of traffic or data without performance degradation.
+    - Designing the system to handle increasing amounts of traffic or data without performance degradation.
 
 5. **Reliability**:
 
-- Ensuring the system can recover from failures and maintain consistent service.
+    - Ensuring the system can recover from failures and maintain consistent service.
 
 6. **Performance**:
 
-- Optimizing response times and throughput.
+    - Optimizing response times and throughput.
 
 7. **Security**:
 
-- Protecting data and system integrity from unauthorized access and attacks.
+    - Protecting data and system integrity from unauthorized access and attacks.
 
 8. **Maintainability and Extensibility**:
 
-- Designing the system for ease of updates, debugging, and adding new features.
+    - Designing the system for ease of updates, debugging, and adding new features.
 
 # IP
 
@@ -199,6 +199,7 @@ Readings:
 - [What Is An IP Address? How Does It Work?](<https://www.fortinet.com/resources/cyberglossary/what-is-ip-address#:~:text=An%20Internet%20Protocol%20(IP)%20address,use%20the%20internet%20to%20communicate.>)
 - [Subnet Mask](https://www.youtube.com/watch?v=s_Ntt6eTn94)
 - [Basics of Computer Networking](https://www.geeksforgeeks.org/basics-computer-networking/)
+- [VPN (Virtual Private Network) Explained](https://www.youtube.com/watch?v=R-JUOpCgTZc)
 
 # OSI Model
 
