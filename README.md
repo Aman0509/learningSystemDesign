@@ -742,6 +742,12 @@ Here are some commonly used technologies for caching:
 - [Amazon Elasticache](https://aws.amazon.com/elasticache)
 - [Aerospike](https://aerospike.com)
 
+Readings:
+
+- [Cache Systems Every Developer Should Know](https://www.youtube.com/watch?v=dGAgxozNWFE)
+- [Caching | Cache Patterns | Cache Invalidation & Eviction](https://www.youtube.com/watch?v=Ez1GK2imrsY)
+- [Caching - Simply Explained](https://www.youtube.com/watch?v=6FyXURRVmR0)
+
 # Content Delivery Network (CDN)
 
 A content delivery network (CDN) is a geographically distributed group of servers that work together to provide fast delivery of internet content. Generally, static files such as HTML/CSS/JS, photos, and videos are served from CDN.
