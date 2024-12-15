@@ -473,9 +473,13 @@ Hardware load balancers include proprietary firmware that requires maintenance a
 
 ### DNS
 
-DNS load balancing is the practice of configuring a domain in the Domain Name System (DNS) such that client requests to the domain are distributed across a group of server machines.
+DNS Load Balancing is a technique used to distribute incoming traffic across multiple servers or resources by leveraging the Domain Name System (DNS). Instead of pointing a domain name to a single IP address, DNS load balancing maps it to multiple IP addresses (usually corresponding to different servers). When a client requests the domain, the DNS server responds with one of the IP addresses based on a predefined balancing strategy.
 
-Unfortunately, DNS load balancing has inherent problems limiting its reliability and efficiency. Most significantly, DNS does not check for server and network outages, or errors. It always returns the same set of IP addresses for a domain even if servers are down or inaccessible.
+Limitations of DNS Load Balancing:
+
+- **Caching Issues**: DNS responses are cached by clients and intermediate servers, which may delay updates to IP changes.
+- **Health Monitoring Challenges**: DNS alone doesn’t actively check the health of servers unless integrated with a monitoring system.
+- **No Real-Time Balancing**: Once an IP is resolved by the DNS, traffic is directed to that server, irrespective of its current load or state.
 
 ## Routing Algorithms
 
@@ -532,6 +536,11 @@ Following are some of the load balancing solutions commonly used in the industry
 - [DigitalOcean Load Balancer](https://www.digitalocean.com/products/load-balancer)
 - [Nginx](https://www.nginx.com)
 - [HAProxy](http://www.haproxy.org)
+
+Readings:
+
+- [What is a Load Balancer?](https://www.youtube.com/watch?v=sCR3SAVdyCc)
+- [Load Balancers for System Design Interviews](https://www.youtube.com/watch?v=chyZRNT7eEo)
 
 # Clustering
 
