@@ -199,6 +199,7 @@ Readings:
 - [What Is An IP Address? How Does It Work?](<https://www.fortinet.com/resources/cyberglossary/what-is-ip-address#:~:text=An%20Internet%20Protocol%20(IP)%20address,use%20the%20internet%20to%20communicate.>)
 - [Subnet Mask](https://www.youtube.com/watch?v=s_Ntt6eTn94)
 - [Basics of Computer Networking](https://www.geeksforgeeks.org/basics-computer-networking/)
+- [How a VPN Works](https://www.youtube.com/watch?v=sr2-K6AaHNI&t=182s)
 - [VPN (Virtual Private Network) Explained](https://www.youtube.com/watch?v=R-JUOpCgTZc)
 
 # OSI Model
@@ -917,6 +918,19 @@ Here are some advantages of using a reverse proxy:
 
 Wait, isn't reverse proxy similar to a load balancer? Well, no as a load balancer is useful when we have multiple servers. Often, load balancers route traffic to a set of servers serving the same function, while reverse proxies can be useful even with just one web server or application server. A reverse proxy can also act as a load balancer but not the other way around.
 
+| **Aspect**               | **Reverse Proxy**                                                                                  | **Load Balancer**                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Primary Function**     | Acts as an intermediary between clients and servers, forwarding client requests to one server.     | Distributes incoming traffic across multiple servers to ensure optimal resource utilization. |
+| **Traffic Distribution** | Typically forwards requests to a single server.                                                    | Balances traffic across multiple servers.                                                    |
+| **Use Case**             | - SSL termination<br>- Caching<br>- Compression<br>- Security (e.g., hiding server details)        | - Distributing load<br>- Improving scalability<br>- Ensuring high availability               |
+| **Server Health Check**  | Does not typically monitor server health.                                                          | Actively checks server health and reroutes traffic from unhealthy servers.                   |
+| **Load Distribution**    | No load balancing capabilities unless combined with load balancing logic.                          | Dynamically distributes traffic based on configured algorithms.                              |
+| **Content Handling**     | Can perform application-level functions like URL rewriting, authentication, and request filtering. | Primarily focuses on distributing traffic and may not handle content-specific tasks.         |
+| **Scope**                | Works with one or a few backend servers.                                                           | Designed to handle multiple backend servers at scale.                                        |
+| **Protocol Level**       | Operates at **Layer 7 (Application Layer)**.                                                       | Can operate at **Layer 4 (Transport Layer)** or **Layer 7 (Application Layer)**.             |
+| **Example Use**          | - Acts as a gateway for microservices. <br>- Hides backend servers.                                | - Balances traffic across multiple instances of a web application.                           |
+| **Tools/Technologies**   | Examples: NGINX, Apache HTTP Server, HAProxy (in reverse proxy mode).                              | Examples: HAProxy, AWS Elastic Load Balancer, NGINX, Traefik.                                |
+
 ## Examples
 
 Below are some commonly used proxy technologies:
@@ -925,6 +939,11 @@ Below are some commonly used proxy technologies:
 - [HAProxy](http://www.haproxy.org)
 - [Traefik](https://doc.traefik.io/traefik)
 - [Envoy](https://www.envoyproxy.io)
+
+Readings:
+
+- [What is a Proxy Server?](https://www.youtube.com/watch?v=5cPIukqXe5w)
+- [Proxy vs Reverse Proxy Explained](https://www.youtube.com/watch?v=RXXRguaHZs0)
 
 # Availability
 
