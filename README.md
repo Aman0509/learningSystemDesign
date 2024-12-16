@@ -750,13 +750,41 @@ Readings:
 
 # Content Delivery Network (CDN)
 
-A content delivery network (CDN) is a geographically distributed group of servers that work together to provide fast delivery of internet content. Generally, static files such as HTML/CSS/JS, photos, and videos are served from CDN.
+A content delivery network (CDN) is a geographically distributed group of servers that work together to provide fast delivery of internet content. Generally, static files such as HTML/CSS/JS, photos, and videos are served from CDN. The primary goal of a CDN is to reduce latency & improve the speed and performance of web content delivery.
 
 ![cdn-map](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/content-delivery-network/cdn-map.png)
 
+Here's how it works in more detail:
+
+1. **Geographical Distribution**
+
+   - CDNs consist of numerous servers located in strategic locations around the globe, known as _Points of Presence (PoPs)_.
+   - These servers cache copies of web content, such as images, videos, HTML pages, stylesheets (CSS), and JavaScript files.
+
+2. **Load Balancing**
+
+   - When a user requests content from a website, the CDN directs the request to the server (PoP) that is geographically closest to the user.
+   - This helps to minimize the distance data needs to travel, which reduces latency and speeds up content delivery.
+
+3. **Caching**
+
+   - CDNs cache content at edge servers close to the users.
+   - If the content has been previously requested, it is already stored on the nearby PoP, leading to faster access.
+   - This reduces the load on the origin server, enhances performance, and improves reliability.
+
+4. **High Availability**
+
+   - Due to its distributed nature, CDNs help to mitigate the impact of traffic spikes and server failures.
+   - If one server fails or experiences heavy traffic, requests can be rerouted to other PoPs, ensuring continuous availability of the content
+
+5. **Security**
+
+   - CDNs can provide additional layers of security, including protection against Distributed Denial of Service (DDoS) attacks.
+   - They also offer secure delivery mechanisms, such as HTTPS, to protect data in transit.
+
 ## Why use a CDN?
 
-Content Delivery Network (CDN) increases content availability and redundancy while reducing bandwidth costs and improving security. Serving content from CDNs can significantly improve performance as users receive content from data centers close to them and our servers do not have to serve requests that the CDN fulfills.
+Content Delivery Network (CDN) increases content _availability and redundancy_ while _reducing bandwidth costs_ and improving _security_. Serving content from CDNs can significantly improve _performance_ as users receive content from data centers close to them and our servers do not have to serve requests that the CDN fulfills.
 
 ## How does a CDN work?
 
@@ -769,6 +797,39 @@ To minimize the distance between the visitors and the website's server, a CDN st
 Once the static assets are cached on all the CDN servers for a particular location, all subsequent website visitor requests for static assets will be delivered from these edge servers instead of the origin, thus reducing the origin load and improving scalability.
 
 For example, when someone in the UK requests our website which might be hosted in the USA, they will be served from the closest edge location such as the London edge location. This is much quicker than having the visitor make a complete request to the origin server which will increase the latency.
+
+## Setting Up CDN
+
+As a developer or an organization managing a web application, you are responsible for configuring the CDN to ensure that users in different geographical locations, can access your content quickly and efficiently. Here are the steps you typically need to follow to configure CDN for users in different geographical location:
+
+1. **Choose a CDN Provider**:
+
+   - Select a reputable CDN provider that has a global presence with Points of Presence (PoPs). Popular CDN providers include Cloudflare, Amazon CloudFront, Akamai, Google Cloud CDN, Microsoft Azure CDN, and others.
+
+2. **Configure the CDN**:
+
+   - Sign up for the CDN service and configure it to work with your web application. This typically involves creating a distribution or a similar setup within the CDN provider's dashboard.
+   - Specify the origin server (your main server) from where the CDN will fetch the content.
+
+3. **Set Up Caching Rules**:
+
+   - Define caching rules to determine which types of content should be cached at the edge servers (PoPs).
+   - Configure the time-to-live (TTL) for your content, which dictates how long the content remains cached before it is refreshed.
+
+4. **Update DNS Settings**:
+
+   - Update your domain's DNS settings to point to the CDN. This usually involves changing your DNS records to use the CDN provider's name servers or CNAME records.
+   - The DNS changes ensure that user requests are redirected to the nearest CDN PoP rather than directly to your origin server.
+
+5. **Test and Verify**:
+
+   - After setting up the CDN, test the configuration to ensure that users in the other geographical locations are being served content from that CDN's PoPs.
+   - Use tools like traceroute, CDN-specific analytics, or online services like Pingdom and GTmetrix to verify that the content is being delivered from the expected locations.
+
+6. **Monitor and Optimize**:
+
+   - Continuously monitor the performance of your CDN using the monitoring tools provided by the CDN provider.
+   - Optimize settings based on user traffic patterns and performance metrics. This might include adjusting caching rules, adding or modifying edge locations, and implementing security settings.
 
 ## Types
 
@@ -802,6 +863,10 @@ Here are some widely used CDNs:
 - [Google Cloud CDN](https://cloud.google.com/cdn)
 - [Cloudflare CDN](https://www.cloudflare.com/cdn)
 - [Fastly](https://www.fastly.com/products/cdn)
+
+Readings:
+
+- [What Is a CDN | Explained](https://www.youtube.com/watch?v=P641RroHFpA)
 
 # Proxy
 
