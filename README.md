@@ -1051,15 +1051,16 @@ Vertical scaling (also known as scaling up) expands a system's scalability by ad
 
 ### Advantages
 
-- Simple to implement
-- Easier to manage
+- Simple to implement (no architectural changes)
+- Easier to manage (single server)
 - Data consistent
+- Suitable for smaller workloads or legacy applications
 
 ### Disadvantages
 
 - Risk of high downtime
 - Harder to upgrade
-- Can be a single point of failure
+- Can be a single point of failure (no redundancy)
 
 ## Horizontal scaling
 
@@ -1067,16 +1068,18 @@ Horizontal scaling (also known as scaling out) expands a system's scale by addin
 
 ### Advantages
 
-- Increased redundancy
-- Better fault tolerance
+- Increased redundancy (duplicating critical components or functions to improve a system's reliability and availability)
+- Better fault tolerance (due to increased redundancy)
 - Flexible and efficient
 - Easier to upgrade
+- Cost-effective for large-scale, distributed workloads
 
 ### Disadvantages
 
 - Increased complexity
 - Data inconsistency
-- Increased load on downstream services
+- Increased load on downstream services (adding more servers (or nodes) to handle traffic at one layer can generate more requests or workload for the systems or services downstream (e.g., databases, APIs, or backend services))
+- Latency might increase due to inter-server communication
 
 # Storage
 
