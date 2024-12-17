@@ -999,11 +999,43 @@ For example, if both `Foo` and `Bar` each had 99.9% availability, their total av
 
 If a system is reliable, it is available. However, if it is available, it is not necessarily reliable. In other words, high reliability contributes to high availability, but it is possible to achieve high availability even with an unreliable system.
 
+Example - Imagine a system with two configurations:
+
+**Scenario 1: Reliable and Available System**
+
+- A highly reliable web server runs continuously for 365 days without any failure.
+- Since it doesn’t fail, it is always available.
+- Conclusion: High reliability leads to high availability.
+
+**Scenario 2: Available but Unreliable System**
+
+- A web server crashes frequently (unreliable), but there is a redundant backup server that takes over immediately.
+- The system appears "available" to users because the failover mechanism minimizes downtime.
+- Conclusion: Despite unreliability, availability can still be high with quick recovery.
+
 ## High availability vs Fault Tolerance
 
 Both high availability and fault tolerance apply to methods for providing high uptime levels. However, they accomplish the objective differently.
 
 A fault-tolerant system has no service interruption but a significantly higher cost, while a highly available system has minimal service interruption. Fault-tolerance requires full hardware redundancy as if the main system fails, with no loss in uptime, another system should take over.
+
+Example:
+
+**Scenario 1: High Availability**
+
+- A web application is hosted on two servers behind a load balancer.
+- Server A crashes, and the load balancer switches all traffic to Server B within a few seconds.
+- Users may notice a slight delay or need to retry their requests, but the system quickly recovers and becomes operational.
+- Conclusion: The system is highly available because it minimizes downtime through failover mechanisms, but it doesn’t guarantee uninterrupted operation during failures.
+- Typically less expensive and simpler to implement.
+
+**Scenario 2: Fault Tolerance**
+
+- A flight control system uses two servers running in real-time synchronization.
+- Server A fails, but Server B immediately continues processing requests without any impact on users.
+- The system remains fully operational without downtime or noticeable effects.
+- Conclusion: The system is fault-tolerant because it continues operating seamlessly even in the event of hardware or software failures.
+- More expensive due to real-time redundancy.
 
 # Scalability
 
