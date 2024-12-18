@@ -1119,13 +1119,15 @@ Volume is a fixed amount of storage on a disk or tape. The term volume is often 
 
 File storage is a solution to store data as files and present it to its final users as a hierarchical directories structure. The main advantage is to provide a user-friendly solution to store and retrieve files. To locate a file in file storage, the complete path of the file is required. It is economical and easily structured and is usually found on hard drives, which means that they appear exactly the same for the user and on the hard drive.
 
+Please note that the hierarchical directories structure is possible with the file system like NTFS, ext4, etc. which acts as a layer between the user and the physical storage, however, ultimately, file data on hard disc is saved into the blocks because that's how storage devices work at the hardware level.
+
 Example: [Amazon EFS](https://aws.amazon.com/efs), [Azure files](https://azure.microsoft.com/en-in/services/storage/files), [Google Cloud Filestore](https://cloud.google.com/filestore), etc.
 
 ## Block storage
 
 Block storage divides data into blocks (chunks) and stores them as separate pieces. Each block of data is given a unique identifier, which allows a storage system to place the smaller pieces of data wherever it is most convenient.
 
-Block storage also decouples data from user environments, allowing that data to be spread across multiple environments. This creates multiple paths to the data and allows the user to retrieve it quickly. When a user or application requests data from a block storage system, the underlying storage system reassembles the data blocks and presents the data to the user or application
+Block storage also decouples data from user environments, allowing that data to be spread across multiple environments. This creates multiple paths to the data and allows the user to retrieve it quickly. When a user or application requests data from a block storage system, the underlying storage system reassembles the data blocks and presents the data to the user or application.
 
 Example: [Amazon EBS](https://aws.amazon.com/ebs).
 
@@ -1139,11 +1141,32 @@ Example: [Amazon S3](https://aws.amazon.com/s3), [Azure Blob Storage](https://az
 
 A NAS (Network Attached Storage) is a storage device connected to a network that allows storage and retrieval of data from a central location for authorized network users. NAS devices are flexible, meaning that as we need additional storage, we can add to what we have. It's faster, less expensive, and provides all the benefits of a public cloud on-site, giving us complete control.
 
+| **Aspect**              | **File Storage**                                                     | **Block Storage**                                               | **Object Storage**                                                               |
+| ----------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Definition**          | Stores data in a hierarchical structure as files and folders.        | Divides data into blocks, which are stored independently.       | Stores data as objects, each containing data, metadata, and a unique identifier. |
+| **Access Method**       | File-level access via protocols like NFS, SMB, or CIFS.              | Block-level access via protocols like iSCSI, Fibre Channel.     | Accessed via REST APIs using HTTP(S).                                            |
+| **Structure**           | Files and folders organized in directories.                          | Blocks are raw storage units with no inherent structure.        | Flat structure with objects stored in a single namespace.                        |
+| **Performance**         | Slower than block storage; overhead from file systems.               | High performance for databases and transactional data.          | Moderate; optimized for large-scale data retrieval.                              |
+| **Scalability**         | Limited scalability, tied to file system constraints.                | Moderate scalability depending on architecture.                 | Highly scalable for petabytes and beyond.                                        |
+| **Use Cases**           | File sharing, content management systems, and user home directories. | Databases, virtual machines, and high-performance applications. | Backup, archiving, unstructured data, and cloud storage.                         |
+| **Examples**            | Network-Attached Storage (NAS).                                      | Direct-Attached Storage (DAS) and Storage Area Networks (SAN).  | Amazon S3, Google Cloud Storage, OpenStack Swift.                                |
+| **Metadata Support**    | Limited metadata support (e.g., file name, size, permissions).       | Minimal metadata; focus on block ID and location.               | Rich metadata; stored alongside the object for easy retrieval.                   |
+| **Cost**                | Moderate cost; depends on the number of files and users.             | Higher cost due to performance and reliability.                 | Cost-effective for large-scale storage needs.                                    |
+| **Data Management**     | Easier for end-users to manage via files and directories.            | Requires specialized tools to manage at the block level.        | Simplified management via APIs and metadata.                                     |
+| **Backup and Recovery** | Integrated with file-based tools.                                    | Needs additional block-level backup solutions.                  | Built-in features like replication and versioning.                               |
+
 ## HDFS
 
 The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets. It has many similarities with existing distributed file systems.
 
 HDFS is designed to reliably store very large files across machines in a large cluster. It stores each file as a sequence of blocks, all blocks in a file except the last block are the same size. The blocks of a file are replicated for fault tolerance.
+
+Readings:
+
+- [What is RAID 0, 1, 5, & 10?](https://www.youtube.com/watch?v=U-OCdTeZLac)
+- [What is RAID Parity?](https://www.youtube.com/watch?v=BjuBloMHhKk)
+- [File (NAS) vs. Block (SAN) vs. Object Cloud Storage](https://www.youtube.com/watch?v=3r9RGJ0_Bls)
+- [System Design: Storage | File vs Block vs Object](https://www.youtube.com/watch?v=71iiAzlF2Rs)
 
 # Databases and DBMS
 
