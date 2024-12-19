@@ -1226,6 +1226,12 @@ Some common challenges faced while running databases at scale:
 - **Removing limits on scalability**: A business needs to grow if it's going to survive, and its data management must grow along with it. But it's very difficult to predict how much capacity the company will need, particularly with on-premises databases.
 - **Ensuring data residency, data sovereignty, or latency requirements**: Some organizations have use cases that are better suited to run on-premises. In those cases, engineered systems that are pre-configured and pre-optimized for running the database are ideal.
 
+Readings:
+
+- [What is difference between database and database management system?](https://www.linkedin.com/pulse/what-difference-between-database-management-khzrc/)
+- [What is a Database? Database Types, Examples, and Use Cases](https://www.confluent.io/learn/database/)
+- [Databases types: SQL, NoSQL, Column, Search, Key Value](https://www.youtube.com/watch?v=O_c7lzNbcKo&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=7)
+
 # SQL databases
 
 A SQL (or relational) database is a collection of data items with pre-defined relationships between them. These items are organized as a set of tables with columns and rows. Tables are used to hold information about the objects to be represented in the database. Each column in a table holds a certain kind of data and a field stores the actual value of an attribute. The rows in the table represent a collection of related values of one object or entity.
