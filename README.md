@@ -1277,6 +1277,14 @@ Here are some commonly used relational databases:
 - [MariaDB](https://mariadb.org)
 - [Amazon Aurora](https://aws.amazon.com/rds/aurora)
 
+Readings:
+
+- [SQL Views In 4 Minutes: Super Useful! Wow! Crazy! Amazing! I'm Crying Tears Of SQL Joy.](https://www.youtube.com/watch?v=vLLkNI-vkV8)
+- [View in Database | Oracle, SQL Server Views | Types of Views](https://www.youtube.com/watch?v=QngqhdLd1SE)
+- [Materialized View in SQL | Faster SQL Queries using Materialized Views](https://www.youtube.com/watch?v=WzkBZ0byoYE)
+- [Django Query Optimization / select_related & prefetch_related / django-debug-toolbar / N+1 Problem](https://www.youtube.com/watch?v=a3dTy8RO5Ho)
+- [Complete SQL Course for Beginners | Full Tutorial in One Video](https://www.youtube.com/watch?v=RQPpP2ywA9k)
+
 # NoSQL databases
 
 NoSQL is a broad category that includes any database that doesn't use SQL as its primary data access language. These types of databases are also sometimes referred to as non-relational databases. Unlike in relational databases, data in a NoSQL database doesn't have to conform to a pre-defined schema. NoSQL databases follow [BASE consistency model](https://karanpratapsingh.com/courses/system-design/acid-and-base-consistency-models#base).
