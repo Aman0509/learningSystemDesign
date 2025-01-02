@@ -1566,6 +1566,13 @@ In a sparse index, index records are created only for some of the records.
 
 Sparse indexes require less maintenance than dense indexes at write-time since they only contain a subset of the values. This lighter maintenance burden means that inserts, updates, and deletes will be faster. Having fewer entries also means that the index will use less memory. Finding data is slower since a scan across the page typically follows the binary search. Sparse indexes are also optional when working with ordered data.
 
+Readings:
+
+- [Database Indexing for Dumb Developers](https://www.youtube.com/watch?v=lYh6LrSIDvY)
+- [Indexes (Clustered, Non-Clustered, Composite Index)](https://www.youtube.com/watch?v=EZ3jBam2IEA&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=41)
+- [Database Indexing: How DBMS Indexing done to improve search query performance? Explained](https://www.youtube.com/watch?v=6ZquiVH8AGU)
+- [How do indexes make databases read faster?](https://www.youtube.com/watch?v=3G293is403I)
+
 # Normalization and Denormalization
 
 ## Terms
