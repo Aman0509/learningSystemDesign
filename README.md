@@ -2180,10 +2180,13 @@ Readings:
 - [A plain english introduction to CAP Theorem](http://ksat.me/a-plain-english-introduction-to-cap-theorem)
 - [CAP | Consistency, Availability and Partitioning | System Design Tutorials | Lecture 19 | 2020](https://www.youtube.com/watch?v=pSoKUfLTe8Y&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=19)
 - [What is CAP Theorem? Degrees of CAP theorem, use cases | System Design Tutorials | Lecture 20 | 2020](https://www.youtube.com/watch?v=kwCFHLbIhak&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=20)
+- [CAP Theorem | Trade offs to choose a Database | System Design Primer | Tech Primers](https://www.youtube.com/watch?v=R_Fxz14tr2M)
 
 # PACELC Theorem
 
 The PACELC theorem is an extension of the CAP theorem. The CAP theorem states that in the case of network partitioning (P) in a distributed system, one has to choose between Availability (A) and Consistency (C).
+
+> _If <ins>P</ins>artition then <ins>C</ins>onsistency or <ins>A</ins>vailability <ins>E</ins>lse <ins>L</ins>atency or <ins>C</ins>onsistency._
 
 PACELC extends the CAP theorem by introducing latency (L) as an additional attribute of a distributed system. The theorem states that else (E), even when the system is running normally in the absence of partitions, one has to choose between latency (L) and consistency (C).
 
@@ -2194,6 +2197,10 @@ _The PACELC theorem was first described by [Daniel J. Abadi](https://scholar.goo
 PACELC theorem was developed to address a key limitation of the CAP theorem as it makes no provision for performance or latency.
 
 For example, according to the CAP theorem, a database can be considered available if a query returns a response after 30 days. Obviously, such latency would be unacceptable for any real-world application.
+
+Readings:
+
+- [PACELC Theorem | Beyond CAP Theorem | System Design Primer](https://www.youtube.com/watch?v=rVF0Oi_R84Q)
 
 # Transactions
 
