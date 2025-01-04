@@ -2124,6 +2124,11 @@ Given BASE's loose consistency, developers need to be more knowledgeable and rig
 
 On the other hand, planning around BASE limitations can sometimes be a major disadvantage when compared to the simplicity of ACID transactions. A fully ACID database is the perfect fit for use cases where data reliability and consistency are essential.
 
+Readings:
+
+- [ACID Properties in DBMS](https://www.geeksforgeeks.org/acid-properties-in-dbms/)
+- [ACID Model vs BASE Model For Database](https://www.geeksforgeeks.org/acid-model-vs-base-model-for-database/)
+
 # CAP Theorem
 
 CAP theorem states that a distributed system can deliver only two of the three desired characteristics Consistency, Availability, and Partition tolerance (CAP).
