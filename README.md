@@ -1581,41 +1581,203 @@ Before we go any further, let's look at some commonly used terms in normalizatio
 
 ### Keys
 
-**Primary key**: Column or group of columns that can be used to uniquely identify every row of the table.
+- **Primary key**: It is a unique identifier for a record in a table. It ensures each row is unique and cannot contain `NULL` values.
 
-**Composite key**: A primary key made up of multiple columns.
+  Here, `StudentID` as primary key ensures no duplicate or `NULL` values.
 
-**Super key**: Set of all keys that can uniquely identify all the rows present in a table.
+  **Students Table**
 
-**Candidate key**: Attributes that identify rows uniquely in a table.
+  | StudentID | Name    | Age |
+  | :-------- | :------ | :-- |
+  | 101       | Alice   | 20  |
+  | 102       | Bob     | 22  |
+  | 103       | Charlie | 21  |
 
-**Foreign key**: It is a reference to a primary key of another table.
+  ```sql
+  CREATE TABLE Students (
+     StudentID INT PRIMARY KEY,
+     Name VARCHAR(100),
+     Age INT
+  );
+  ```
 
-**Alternate key**: Keys that are not primary keys are known as alternate keys.
+- **Composite key**: It is made up of two or more columns to uniquely identify a record in a table.
 
-**Surrogate key**: A system-generated value that uniquely identifies each entry in a table when no other column was able to hold properties of a primary key.
+  Here, `{StudentID, CourseID}` uniquely identifies each record.
+
+  **Enrollments Table**
+
+  | StudentID | CourseID | EnrollmentDate |
+  | :-------- | :------- | :------------- |
+  | 101       | CSE101   | 2025-01-01     |
+  | 101       | CSE102   | 2025-01-02     |
+  | 102       | CSE101   | 2025-01-01     |
+
+  ```sql
+  CREATE TABLE Enrollments (
+     StudentID INT,
+     CourseID INT,
+     EnrollmentDate DATE,
+     PRIMARY KEY (StudentID, CourseID)
+  );
+  ```
+
+- **Super key**: A Super Key is any set of attributes that can uniquely identify a row in a table. It can contain additional attributes beyond what is necessary for uniqueness.
+
+  Example: In a table `Students`, super keys can be `{StudentID}`, `{StudentID, Name}`, `{Email}`, `{StudentID, Age}`.
+
+- **Candidate key**: It is a minimal Super Key. It contains only the necessary attributes to ensure uniqueness, with no extra attributes.
+
+  Example: In the `Students` table, `{StudentID}` and `{Email}` is the Candidate Key. If `StudentID` is the Primary Key, `Email` is an Alternate Key.
+
+- **Foreign key**: It is a column (or set of columns) that establishes a relationship between two tables. It is a reference to a primary key of another table.
+
+  **Customer Table**
+
+  | CustomerID | Name  | City     |
+  | :--------- | :---- | :------- |
+  | 1          | Alice | New York |
+  | 2          | Bob   | London   |
+
+  **Orders Table**
+
+  | OrderID | CustomerID | OrderDate  |
+  | :------ | :--------- | :--------- |
+  | 201     | 1          | 2025-01-01 |
+  | 202     | 2          | 2025-01-02 |
+  | 203     | 1          | 2025-01-03 |
+
+  Here, `CustomerID` in the `Orders` table is a Foreign Key referencing `CustomerID` in the `Customers` table.
+
+  ```sql
+  CREATE TABLE Orders (
+     OrderID INT PRIMARY KEY,
+     CustomerID INT,
+     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+  );
+  ```
+
+- **Alternate key**: An Alternate Key is a Candidate Key that is not chosen as the Primary Key.
+
+  Example: In the `Students` table, Candidate Keys are `{StudentID}`, `{Email}`. If `StudentID` is the Primary Key, then `Email` becomes the Alternate Key.
+
+- **Surrogate key**: It is a synthetic or artificially generated key, typically used when no natural Primary Key is available. It's usually a numeric or auto-incremented value.
+
+  **Employees Table**
+
+  | EmpID | Name    | Department |
+  | :---- | :------ | :--------- |
+  | 1     | Alice   | HR         |
+  | 2     | Bob     | IT         |
+  | 3     | Charlie | Finance    |
+
+  Here, `EmpID` is a Surrogate Key and has no real-world meaning outside the database.
+
+  ```sql
+     CREATE TABLE Employees (
+     EmpID INT AUTO_INCREMENT PRIMARY KEY,
+     Name VARCHAR(100),
+     Department VARCHAR(50)
+  );
+  ```
+
+### Data Integrity
+
+Data integrity refers to the accuracy, consistency, and reliability of data stored in a database. It ensures that the data is correct, valid, and protected from accidental or intentional corruption or loss.
+
+**Types of Data Integrity**
+
+- **Entity Integrity**: Ensures that each table has a unique identifier (primary key) and that no two rows have the same primary key value.
+
+  Example:
+
+  **Students Table**
+
+  | StudentID | StudentName |
+  | :-------- | :---------- |
+  | 101       | Alice       |
+  | 102       | Bob         |
+
+  If `StudentID` is the primary key, no two rows can have the same `StudentID`, and it cannot be NULL.
+
+- **Referential Integrity**: Ensures that relationships between tables are consistent. Foreign keys must reference valid primary keys in another table.
+
+  Example:
+
+  **Students Table**
+
+  | StudentID | StudentName |
+  | :-------- | :---------- |
+  | 101       | Alice       |
+  | 102       | Bob         |
+
+  **Enrollments Table**
+
+  | EnrollmentID | StudentID | CourseID |
+  | :----------- | :-------- | :------- |
+  | 1            | 101       | CSE101   |
+  | 2            | 103       | CSE102   |
+
+  If `StudentID` 103 does not exist in the `Students` table, it violates referential integrity.
+
+- **Domain Integrity**: Ensures that the values in a column fall within a specific domain (range, format, or type constraints).
+
+  Example: If a column `Age` in the `Students` table is defined as an integer between 18 and 60, any value outside this range would violate domain integrity.
+
+- **User-Defined Integrity**: Custom rules defined by the database designer to enforce specific business rules.
+
+  Example: In a banking system, a withdrawal amount cannot exceed the account balance.
 
 ### Dependencies
 
-**Partial dependency**: Occurs when the primary key determines some other attributes.
+- **Partial dependency**: Occurs when the primary key determines some other attributes.
 
-**Functional dependency**: It is a relationship that exists between two attributes, typically between the primary key and non-key attribute within a table.
+- **Functional dependency**: It is a relationship that exists between two attributes, typically between the primary key and non-key attribute within a table.
 
-**Transitive functional dependency**: Occurs when some non-key attribute determines some other attribute.
+- **Transitive functional dependency**: Occurs when some non-key attribute determines some other attribute.
 
 ### Anomalies
 
-Database anomaly happens when there is a flaw in the database due to incorrect planning or storing everything in a flat database. This is generally addressed by the process of normalization.
+Database anomalies occur when data redundancy and poor database design lead to inconsistencies or inefficiencies in handling data. These anomalies are typically observed in unnormalized or poorly normalized databases.
 
 There are three types of database anomalies:
 
-**Insertion anomaly**: Occurs when we are not able to insert certain attributes in the database without the presence of other attributes.
+- **Insertion anomaly**: Occurs when we are not able to insert certain attributes in the database without the presence of other attributes.
 
-**Update anomaly**: Occurs in case of data redundancy and partial update. In other words, a correct update of the database needs other actions such as addition, deletion, or both.
+  Example: Suppose we have a table,
 
-**Deletion anomaly**: Occurs where deletion of some data requires deletion of other data.
+  | StudentID | Name  | CourseID | CourseName       |
+  | :-------- | :---- | :------- | :--------------- |
+  | 101       | Alice | CSE101   | Data Science     |
+  | 102       | Bob   | CSE102   | Machine Learning |
 
-**Example**
+  Problem: If we want to add a new course (`CSE103`, "AI") but no student has enrolled yet, we cannot insert it because `StudentID` and `Name` are mandatory fields.
+
+- **Update anomaly**: Occurs in case of data redundancy and partial update. In other words, a correct update of the database needs other actions such as addition, deletion, or both.
+  OR
+  Occurs when a single update requires multiple rows to be updated, and failure to do so leads to inconsistency.
+
+  Example: Consider the same table,
+
+  | StudentID | Name  | CourseID | CourseName   |
+  | :-------- | :---- | :------- | :----------- |
+  | 101       | Alice | CSE101   | Data Science |
+  | 102       | Bob   | CSE101   | Data Science |
+
+  Problem: If the course name for `CSE101` changes to "Advanced Data Science," we need to update all rows where `CSE101` exists. If any row is missed, it leads to inconsistent data.
+
+- **Deletion anomaly**: Occurs where deletion of some data requires deletion of other data.
+
+  Example: Consider the same table,
+
+  | StudentID | Name  | CourseID | CourseName       |
+  | :-------- | :---- | :------- | :--------------- |
+  | 101       | Alice | CSE101   | Data Science     |
+  | 102       | Bob   | CSE102   | Machine Learning |
+
+  Problem: If the last student (`102`, Bob) enrolled in "Machine Learning" withdraws, and we delete their record, we lose the information about the course "Machine Learning."
+
+**Another Example**
 
 Let's consider the following table which is not normalized:
 
@@ -1649,35 +1811,210 @@ Normal forms are a series of guidelines to ensure that the database is normalize
 
 For a table to be in the first normal form (1NF), it should follow the following rules:
 
-- Repeating groups are not permitted.
-- Identify each set of related data with a primary key.
-- Set of related data should have a separate table.
-- Mixing data types in the same column is not permitted.
+- **Repeating groups are not permitted**: In 1NF, a column should contain only atomic (indivisible) values, meaning repeating groups are not allowed.
+
+  Example (Violation):
+
+  | StudentID | Name  | Courses          |
+  | :-------- | :---- | :--------------- |
+  | 101       | Alice | Math, Science    |
+  | 102       | Bob   | Science, History |
+
+  Problem: The `Courses` column contains multiple values (e.g., "Math, Science"), which is a repeating group.
+
+  **Normalized to 1NF (Split repeating groups into separate rows)**
+
+  | StudentID | Name  | Course  |
+  | :-------- | :---- | :------ |
+  | 101       | Alice | Math    |
+  | 101       | Alice | Science |
+  | 102       | Bob   | Science |
+  | 102       | Bob   | History |
+
+- **Identify each set of related data with a primary key**: In 1NF, each record in the table must be unique, and we should identify it using a Primary Key.
+
+  Example (Violation):
+
+  | StudentID | Name  | Courses |
+  | :-------- | :---- | :------ |
+  | 101       | Alice | Math    |
+  | 101       | Alice | Math    |
+  | 102       | Bob   | Science |
+
+  Problem: The row for `Alice` and `Math` is repeated, making it not unique.
+
+  **Normalized to 1NF (Remove duplicates)**
+
+  | StudentID | Name  | Courses |
+  | :-------- | :---- | :------ |
+  | 101       | Alice | Math    |
+  | 102       | Bob   | Science |
+
+- **Set of related data should have a separate table**: In 1NF, if the data contains multiple types of related information, we should normalize it by splitting the table into multiple tables to avoid redundancy.
+
+  Example (Violation):
+
+  | StudentID | Name  | Course1 | Course2 |
+  | :-------- | :---- | :------ | :------ |
+  | 101       | Alice | Math    | Science |
+  | 102       | Bob   | History | English |
+
+  Problem: The table stores different courses in multiple columns (e.g., `Course1`, `Course2`), which is not ideal for scalability.
+
+  **Normalized to 1NF (Split related data into separate tables)**
+
+  **Students Table**
+
+  | StudentID | Name  |
+  | :-------- | :---- |
+  | 101       | Alice |
+  | 102       | Bob   |
+
+  **Courses Table**
+
+  | StudentID | Course  |
+  | :-------- | :------ |
+  | 101       | Math    |
+  | 101       | Science |
+  | 102       | History |
+  | 102       | English |
+
+- **Mixing data types in the same column is not permitted**: In 1NF, each column should contain values of a single type. For instance, a column should not contain both numbers and text.
+
+  Example (Violation):
+
+  | StudentID | Name  | Details              |
+  | :-------- | :---- | :------------------- |
+  | 101       | Alice | 20, Math, Science    |
+  | 102       | Bob   | 22, History, English |
+
+  Problem: The `Details` column contains mixed data types (numbers and text).
+
+  **Normalized to 1NF (Separate data types into distinct columns)**
+
+  | StudentID | Name  | Age | Course1 | Course2 |
+  | :-------- | :---- | :-- | :------ | :------ |
+  | 101       | Alice | 20  | Math    | Science |
+  | 102       | Bob   | 22  | History | English |
 
 **2NF**
 
 For a table to be in the second normal form (2NF), it should follow the following rules:
 
 - Satisfies the first normal form (1NF).
-- Should not have any partial dependency.
+- **Should not have any partial dependency**: A non-prime attribute (not part of any candidate key) depends only on part of a composite primary key, rather than the entire primary key.
+
+  Example Table (Violation of 2NF):
+
+  | StudentID | CourseID | StudentName | CourseName       | InstructorName |
+  | :-------- | :------- | :---------- | :--------------- | :------------- |
+  | 101       | CSE101   | Alice       | Data Science     | Prof. Smith    |
+  | 102       | CSE102   | Bob         | Machine Learning | Prof. Johnson  |
+  | 101       | CSE102   | Alice       | Machine Learning | Prof. Johnson  |
+
+  Problem: Composite Primary Key is `{StudentID, CourseID}` and there is partial dependencies: - `StudentName` depends only on `StudentID` (not on `CourseID`) - `CourseName` and `InstructorName` depend only on `CourseID` (not on `StudentID`).
+
+  **Normalize to 2NF**
+
+  - **Step 1 - Identify Partial Dependencies**: Separate the attributes (`StudentName`, `CourseName`, `InstructorName`) that depend on only part of the composite key.
+
+  - **Step 2 - Create Separate Tables**
+
+    **Students Table**
+
+    | StudentID | StudentName |
+    | :-------- | :---------- |
+    | 101       | Alice       |
+    | 102       | Bob         |
+
+    **Courses Table**
+
+    | CourseID | CourseName       | InstructorName |
+    | :------- | :--------------- | :------------- |
+    | CSE101   | Data Science     | Prof. Smith    |
+    | CSE102   | Machine Learning | Prof. Johnson  |
+
+    **Enrollments Table**
+
+    | StudentID | CourseID |
+    | :-------- | :------- |
+    | 101       | CSE101   |
+    | 101       | CSE102   |
+    | 102       | CSE102   |
 
 **3NF**
 
 For a table to be in the third normal form (3NF), it should follow the following rules:
 
 - Satisfies the second normal form (2NF).
-- Transitive functional dependencies are not permitted.
+- **Transitive functional dependencies are not permitted**: Meaning no non-prime attribute depends on another non-prime attribute.
+
+  Example Table (Violation of 3NF):
+
+  | StudentID | CourseID | StudentName | InstructorID | InstructorName |
+  | :-------- | :------- | :---------- | :----------- | :------------- |
+  | 101       | CSE101   | Alice       | 1            | Prof. Smith    |
+  | 102       | CSE102   | Bob         | 2            | Prof. Johnson  |
+  | 103       | CSE101   | Charlie     | 1            | Prof. Smith    |
+
+  Key Points:
+
+  - Primary Key (composite key): `{StudentID, CourseID}` (also a candidate key, cause it's a minimal set of attributes that can uniquely identify each record).
+  - Functional Dependencies:
+    - `{StudentID}` → `StudentName` (Student name depends on student ID).
+    - `{CourseID}` → `InstructorID` (Each course has a specific instructor).
+    - `{InstructorID}` → `InstructorName` (Instructor name depends on instructor ID).
+  - Prime Attributes: Attributes that are part of the candidate key, `StudentID` and `CourseID`.
+  - Non-Prime Attributes: Attributes that are not part any candidate key, `StudentName`, `InstructorID`, `InstructorName`
+
+  Problem: `InstructorName` depends on `InstructorID`, which depends on `CourseID`. This is a transitive dependency:
+
+  `{CourseID}` → `InstructorID` → `InstructorName`
+
+  **Normalize to 3NF**
+
+  Break down the table by separating the attributes that cause transitive dependencies.
+
+  **Students Table**
+
+  | StudentID | StudentName |
+  | :-------- | :---------- |
+  | 101       | Alice       |
+  | 102       | Bob         |
+  | 103       | Charlie     |
+
+  **Courses Table**
+
+  | CourseID | InstructorID |
+  | :------- | :----------- |
+  | CSE101   | 1            |
+  | CSE102   | 2            |
+
+  **Instructors Table**
+
+  | InstructorID | InstructorName |
+  | :----------- | :------------- |
+  | 1            | Prof. Smith    |
+  | 2            | Prof. Johnson  |
+
+  **Enrollments Table**
+
+  | StudentID | CourseID |
+  | :-------- | :------- |
+  | 101       | CSE101   |
+  | 102       | CSE102   |
+  | 103       | CSE101   |
 
 **BCNF**
 
-Boyce-Codd normal form (or BCNF) is a slightly stronger version of the third normal form (3NF) used to address certain types of anomalies not dealt with by 3NF as originally defined. Sometimes it is also known as the 3.5 normal form (3.5NF).
+Boyce-Codd Normal Form (or BCNF) is a slightly stronger version of the third normal form (3NF) used to address certain types of anomalies not dealt with by 3NF as originally defined. Sometimes it is also known as the 3.5 normal form (3.5NF).
 
 For a table to be in the Boyce-Codd normal form (BCNF), it should follow the following rules:
 
 - Satisfied the third normal form (3NF).
 - For every functional dependency X → Y, X should be the super key.
 
-_There are more normal forms such as 4NF, 5NF, and 6NF but we won't discuss them here. Check out this [amazing video](https://www.youtube.com/watch?v=GFQaEYEc8_8) that goes into detail._
+_There are more normal forms such as 4NF, 5NF, and 6NF but we won't discuss them here. Check out this **[amazing video](https://www.youtube.com/watch?v=GFQaEYEc8_8)** that goes into detail._
 
 In a relational database, a relation is often described as _"normalized"_ if it meets the third normal form. Most 3NF relations are free of insertion, update, and deletion anomalies.
 
@@ -1726,6 +2063,12 @@ Below are some disadvantages of denormalization:
 - Increases complexity of database design.
 - Increases data redundancy.
 - More chances of data inconsistency.
+
+Readings:
+
+- [Introduction of Database Normalization](https://www.geeksforgeeks.org/introduction-of-database-normalization/)
+- [Database Normalization – Normal Forms 1nf 2nf 3nf Table Examples](https://www.freecodecamp.org/news/database-normalization-1nf-2nf-3nf-table-examples/)
+- [Learn Database Denormalization](https://www.youtube.com/watch?v=4bTq0GdSeQs)
 
 # ACID and BASE consistency models
 
