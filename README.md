@@ -1540,6 +1540,10 @@ The primary difference between synchronous and asynchronous replication is how t
 
 In contrast, asynchronous replication copies the data to the replica after the data is already written to the primary storage. Although the replication process may occur in near-real-time, it is more common for replication to occur on a scheduled basis and it is more cost-effective.
 
+Readings:
+
+- [Database Replication | Synchronous vs Asynchronous | System Design Tutorials | Lecture 18 | 2020](https://www.youtube.com/watch?v=RIcNswROzCc&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=18)
+
 # Indexes
 
 Indexes are well known when it comes to databases, they are used to improve the speed of data retrieval operations on the data store. An index makes the trade-offs of increased storage overhead, and slower writes (since we not only have to write the data but also have to update the index) for the benefit of faster reads. Indexes are used to quickly locate data without having to examine every row in a database table. Indexes can be created using one or more columns of a database table, providing the basis for both rapid random lookups and efficient access to ordered records.
