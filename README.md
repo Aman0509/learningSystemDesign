@@ -2171,6 +2171,12 @@ An AP database delivers availability and partition tolerance at the expense of c
 
 **Example**: [Apache Cassandra](https://cassandra.apache.org), [CouchDB](https://couchdb.apache.org).
 
+Readings:
+
+- [A plain english introduction to CAP Theorem](http://ksat.me/a-plain-english-introduction-to-cap-theorem)
+- [CAP | Consistency, Availability and Partitioning | System Design Tutorials | Lecture 19 | 2020](https://www.youtube.com/watch?v=pSoKUfLTe8Y&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=19)
+- [What is CAP Theorem? Degrees of CAP theorem, use cases | System Design Tutorials | Lecture 20 | 2020](https://www.youtube.com/watch?v=kwCFHLbIhak&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=20)
+
 # PACELC Theorem
 
 The PACELC theorem is an extension of the CAP theorem. The CAP theorem states that in the case of network partitioning (P) in a distributed system, one has to choose between Availability (A) and Consistency (C).
