@@ -2204,7 +2204,7 @@ Readings:
 
 # Transactions
 
-A transaction is a series of database operations that are considered to be a _"single unit of work"_. The operations in a transaction either all succeed, or they all fail. In this way, the notion of a transaction supports data integrity when part of a system fails. Not all databases choose to support ACID transactions, usually because they are prioritizing other optimizations that are hard or theoretically impossible to implement together.
+a transaction is a sequence of one or more database operations (such as read, write, update, or delete) that are treated as a _"single, logical unit of work"_. The operations in a transaction either all succeed, or they all fail. In this way, the notion of a transaction supports data integrity when part of a system fails. Not all databases choose to support ACID transactions, usually because they are prioritizing other optimizations that are hard or theoretically impossible to implement together.
 
 _Usually, relational databases support ACID transactions, and non-relational databases don't (there are exceptions)._
 
@@ -2216,11 +2216,11 @@ A transaction in a database can be in one of the following states:
 
 ### Active
 
-In this state, the transaction is being executed. This is the initial state of every transaction.
+In this state, the transaction is begins execution. This is the initial state of every transaction and the transaction remains active until it either completes successfully or encounters an error.
 
 ### Partially Committed
 
-When a transaction executes its final operation, it is said to be in a partially committed state.
+A transaction enters the partially committed state after it completes all its operations but before it is fully committed. At this stage, the system ensures that all changes made by the transaction are consistent and satisfy all constraints.
 
 ### Committed
 
@@ -2228,7 +2228,13 @@ If a transaction executes all its operations successfully, it is said to be comm
 
 ### Failed
 
-The transaction is said to be in a failed state if any of the checks made by the database recovery system fails. A failed transaction can no longer proceed further.
+A transaction moves to the failed state if an error occurs during execution, such as:
+
+- A system crash
+- Violation of constraints (e.g., foreign key constraint)
+- Insufficient resources (e.g., disk space)
+
+Once in the failed state, the transaction cannot continue further.
 
 ### Aborted
 
@@ -2241,7 +2247,10 @@ The database recovery module can select one of the two operations after a transa
 
 ### Terminated
 
-If there isn't any roll-back or the transaction comes from the _committed state_, then the system is consistent and ready for a new transaction and the old transaction is terminated.
+The terminated state is the final state of a transaction. It represents the point at which the transaction has concluded its lifecycle, either successfully or unsuccessfully, and no further operations can be performed for that transaction.
+
+- **From the Committed State**: If a transaction completes all its operations successfully and commits, it moves to the terminated state.
+- **From the Aborted State**: If a transaction fails and is rolled back, it also transitions to the terminated state.
 
 # Distributed Transactions
 
@@ -2253,7 +2262,7 @@ Unlike an ACID transaction on a single database, a distributed transaction invol
 
 In other words, all the nodes must commit, or all must abort and the entire transaction rolls back. This is why we need distributed transactions.
 
-Now, let's look at some popular solutions for distributed transactions:
+Now, let's look at some popular solutions/protocols for distributed transactions:
 
 ## Two-Phase commit
 
@@ -2269,7 +2278,7 @@ This protocol requires a coordinator node, which basically coordinates and overs
 
 Two-phase commit consists of the following phases:
 
-**Prepare phase**
+**Prepare/Voting phase**
 
 The prepare phase involves the coordinator node collecting consensus from each of the participant nodes. The transaction will be aborted unless each of the nodes responds that they're _prepared_.
 
@@ -2281,15 +2290,14 @@ If all participants respond to the coordinator that they are _prepared_, then th
 
 Following problems may arise in the two-phase commit protocol:
 
-- What if one of the nodes crashes?
-- What if the coordinator itself crashes?
-- It is a blocking protocol.
+- Suppose, if some participants send "Ok" or "Yes" during the voting or prepare phase, it indicates they are ready to commit. However, they become blocked while waiting to determine if all other participants are also ready. If the coordinator fails at this point, these participants will remain in limbo, unable to determine whether to commit or roll back. They stay blocked until they receive a Commit or Rollback message from the coordinator or the request times out. This characteristic makes 2PC a blocking protocol.
+- When dealing with large databases containing millions of rows, holding locks on rows for multiple transactions increases system latency. Holding locks on such large tables for extended periods is also risky. This issue is known as the "long-living transactions problem."
 
 ## Three-phase commit
 
 ![three-phase-commit](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/distributed-transactions/three-phase-commit.png)
 
-Three-phase commit (3PC) is an extension of the two-phase commit where the commit phase is split into two phases. This helps with the blocking problem that occurs in the two-phase commit protocol.
+Three-phase commit (3PC) is an extension of the two-phase commit where the commit phase is split into two phases. This helps with the blocking problem that occurs in the two-phase commit protocol. If the coordinator fails before sending a pre commit message, other participants will unanimously agree that the operation was aborted.
 
 ### Phases
 
@@ -2306,6 +2314,11 @@ Coordinator issues the pre-commit message and all the participating nodes must a
 **Commit phase**
 
 This step is also similar to the two-phase commit protocol.
+
+| Phase      | Coordinator's Action                                | Participants' Action                                              |
+| :--------- | :-------------------------------------------------- | :---------------------------------------------------------------- |
+| Can Commit | Asks participants if they can prepare for a commit. | Respond with "Yes" (ready to commit) or "No" (cannot commit).     |
+| Pre-Commit | Informs participants to prepare for committing.     | Prepare for the commit (e.g., write to logs) and respond "Ready". |
 
 ### Why is the Pre-commit phase helpful?
 
@@ -2333,6 +2346,12 @@ There are two common implementation approaches:
 - There's a risk of cyclic dependency between saga participants.
 - Lack of participant data isolation imposes durability challenges.
 - Testing is difficult because all services must be running to simulate a transaction.
+
+Readings:
+
+- [3 Phase commit in Distributed Transaction in Microservice | Interview Question | Code Decode](https://www.youtube.com/watch?v=gq321RHrlj8)
+- [The Saga Pattern in Microservices (EDA - part 2)](https://www.youtube.com/watch?v=C0rGwyJkDTU)
+- [Saga Pattern | Distributed Transactions | Microservices](https://www.youtube.com/watch?v=d2z78guUR4g&t=461s)
 
 # Sharding
 
