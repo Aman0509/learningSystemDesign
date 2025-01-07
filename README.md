@@ -2383,9 +2383,25 @@ Sharding is a database architecture pattern related to _horizontal partitioning_
 
 The justification for data sharding is that, after a certain point, it is cheaper and more feasible to scale horizontally by adding more machines than to scale it vertically by adding powerful servers. Sharding can be implemented at both application or the database level.
 
+## Logical and Physical Sharding
+
+### Logical Sharding
+
+Logical sharding refers to the conceptual division of data based on a sharding key or logic. The application or database management system determines how data is partitioned and routed to the appropriate shard. Logical sharding is about creating the rules and strategies for dividing data.
+
+### Physical Sharding
+
+Physical sharding is the implementation of logical sharding at the infrastructure level. Each shard is hosted on separate physical servers or instances, which handle data storage and processing. Physical sharding involves deploying the hardware or virtual machines required to store and manage the individual shards.
+
 ## Partitioning criteria
 
-There are a large number of criteria available for data partitioning. Some most commonly used criteria are:
+Data sharding can be done in two ways:
+
+- **Algorithmic Sharding**: A certain algorithm is used to determine the destination machine where the dataset is needed to be stored. The process is fast as you don’t need to be dependent on any external device or service to determine the location of your data storage. The algorithm can be in the form of a Partition Function or a Sharding Function which can take the Partition ID or Partition Key as an input and return the Address or ID of the machine where that corresponding dataset is stored. This sharding function distributes the dataset into multiple machines. You should ensure that your sharding function distributes the data uniformly among all the available machines and avoid the existence of hotspots(refers to a situation where a specific shard or a small subset of shards receives a disproportionately high amount of traffic or workload compared to others).
+
+- **Dynamic Sharding**: In Dynamic Sharding an external service is used in order to determine the location of the machine in which the dataset will be present. It doesn’t use any algorithm to determine the address of the destination machine. Every request coming to the system needs to go through the external services in order to fetch the address of the machine. Hence this process is comparatively slower than Algorithmic Sharding.
+
+There are a large number of criteria available for data partitioning. Some most commonly used strategies (Algorithmic Sharding) are:
 
 ### Hash-Based
 
@@ -2432,6 +2448,16 @@ Here are some reasons why sharding might be the right choice:
 - Quickly scale by adding more shards.
 - Better performance as each machine is under less load.
 - When more concurrent connections are required.
+
+Readings:
+
+- [Database Sharding – System Design](https://www.geeksforgeeks.org/database-sharding-a-system-design-concept/#alternatives-to-database-sharding)
+- [Intro to Database Sharding - Can it be a bad idea?](https://www.linkedin.com/pulse/intro-database-sharding-can-bad-idea-saurav-prateek/)
+- [Understanding Database Sharding](https://www.digitalocean.com/community/tutorials/understanding-database-sharding)
+- [What is Database Sharding, Logical and Physical Shards, Dynamic vs Algorithmic Sharding | 2021](https://www.youtube.com/watch?v=YCb-tDQWrXk&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=21&t=934s)
+- [Key based Sharding | Shard Key | Hash function | Advantages and disadvantages | 2021](https://www.youtube.com/watch?v=arUpleGFdt4&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=22)
+- [Range based sharding | Advantages and disadvantages | Hotspots | Use Cases](https://www.youtube.com/watch?v=avepna2q9w0&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=23)
+- [Directory based sharding](https://www.youtube.com/watch?v=62adurZ_Muw&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=24)
 
 # Consistent Hashing
 
