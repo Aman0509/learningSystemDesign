@@ -2650,6 +2650,10 @@ Below are some disadvantages of federated databases:
 - Dependence on autonomous data sources.
 - Query performance and scalability.
 
+Readings:
+
+- [Database Federation - System Design](https://www.geeksforgeeks.org/database-federation-system-design/)
+
 # N-tier architecture
 
 N-tier architecture divides an application into logical layers and physical tiers. Layers are a way to separate responsibilities and manage dependencies. Each layer has a specific responsibility. A higher layer can use services in a lower layer, but not the other way around.
