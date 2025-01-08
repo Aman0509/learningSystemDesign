@@ -2606,6 +2606,12 @@ Let's look at some examples where consistent hashing is used:
 - Data partitioning in [Apache Cassandra](https://cassandra.apache.org).
 - Load distribution across multiple storage hosts in [Amazon DynamoDB](https://aws.amazon.com/dynamodb).
 
+Readings:
+
+- [A Guide to Consistent Hashing](https://www.toptal.com/big-data/consistent-hashing)
+- [Consistent Hashing - System Design Interview](https://www.youtube.com/watch?v=4kd40gEKaLM)
+- [A simple introduction to basics of hashing & need for Consistent Hashing|System Design Primer Course](https://www.youtube.com/watch?v=cITtFpz3a3Y&list=PLTCrU9sGyburBw9wNOHebv9SjlE4Elv5a&index=25)
+
 # Database Federation
 
 Federation (or functional partitioning) splits up databases by function. The federation architecture makes several distinct physical databases appear as one logical database to end-users.
