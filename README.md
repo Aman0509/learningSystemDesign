@@ -70,6 +70,7 @@ _This course is also available on my [website](https://karanpratapsingh.com/cour
   - [OAuth 2.0 and OpenID Connect (OIDC)](#oauth-20-and-openid-connect-oidc)
   - [Single Sign-On (SSO)](#single-sign-on-sso)
   - [SSL, TLS, mTLS](#ssl-tls-mtls)
+  - [Securing APIs](#securing-apis)
 
 - **Chapter V**
 
@@ -4172,6 +4173,109 @@ Mutual TLS, or mTLS, is a method for mutual authentication. mTLS ensures that th
 mTLS helps ensure that the traffic is secure and trusted in both directions between a client and server. This provides an additional layer of security for users who log in to an organization's network or applications. It also verifies connections with client devices that do not follow a login process, such as Internet of Things (IoT) devices.
 
 Nowadays, mTLS is commonly used by microservices or distributed systems in a [zero trust security model](https://en.wikipedia.org/wiki/Zero_trust_security_model) to verify each other.
+
+# Securing APIs
+
+Securing your API is crucial to prevent unauthorized access, data breaches, and other security threats. Here are some best practices to secure your API:
+
+## 1. Use Authentication & Authorization
+
+**Implement OAuth 2.0 / JWT**
+
+- Use OAuth 2.0 for authorization (e.g., with OpenID Connect).
+- Use **JWT (JSON Web Tokens)** for authentication.
+
+**API Keys**
+
+- Assign unique API keys to each client.
+- Validate API keys before processing requests.
+
+**Role-Based Access Control (RBAC)**
+
+- Restrict API access based on user roles and permissions.
+- Example: Admins can update, but users can only read data.
+
+## 2. Use HTTPS (TLS/SSL)
+
+**Enforce HTTPS to encrypt data in transit.**
+
+- Use TLS (SSL) certificates to prevent MITM (Man-in-the-Middle) attacks.
+- Redirect all HTTP requests to HTTPS.
+
+## 3. Secure Endpoints
+
+**Limit Public Endpoints**
+
+- Restrict sensitive API routes to authenticated users.
+- Example: `/admin/*` should be accessible only to admins.
+
+**Validate Input Data**
+
+- Prevent SQL Injection & XSS by validating and sanitizing input.
+- Use libraries like **`express-validator`** (Node.js) or **Django Forms**.
+
+**Rate Limiting & Throttling**
+
+- Prevent DDoS attacks using rate limiting.
+- Example: **Limiter middleware** (e.g., `django-ratelimit`, `express-rate-limit`).
+
+**CORS (Cross-Origin Resource Sharing) Policies**
+
+- Restrict allowed origins in CORS headers.
+- Example: Only allow `https://yourdomain.com`.
+
+## 4. Encrypt Sensitive Data
+
+**Use Hashing for Passwords**
+
+- Store passwords using bcrypt, Argon2, or PBKDF2 (never store plain text).
+
+**Encrypt Stored Data**
+
+- Use AES encryption for sensitive data in the database.
+
+**Avoid Exposing Sensitive Data in URLs**
+
+- Use **POST** instead of **GET** for sensitive data.
+
+## 5. Implement Logging & Monitoring
+
+**Enable API Logging**
+
+- Use tools like **Logstash + Elasticsearch + Kibana (ELK stack)**.
+- Log failed login attempts, API errors, and suspicious activities.
+
+**Monitor for Unusual Activity**
+
+- Set up alerts for excessive API calls or unauthorized access.
+
+**Use Web Application Firewalls (WAF)**
+
+- Protect against SQL Injection, XSS, and API abuse.
+
+## 6. Use Secure API Gateway
+
+**API Gateway for Authentication & Rate Limiting**
+
+- Use API gateways like **Kong, Nginx, or AWS API Gateway**.
+
+**Prevent Mass Assignment & Excessive Data Exposure**
+
+- Control what data is returned in API responses.
+
+## 7. Secure CI/CD Pipeline
+
+**Scan Dependencies for Vulnerabilities**
+
+- Use tools like **Snyk, Dependabot, or OWASP Dependency-Check**.
+
+**Use Environment Variables for Secrets**
+
+- Never store secrets in code. Use `.env` files or vault services.
+
+**Regular Security Audits & Penetration Testing**
+
+- Perform regular security assessments of your API.
 
 # System Design Interviews
 
