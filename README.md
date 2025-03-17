@@ -2668,7 +2668,13 @@ An N-tier architecture can be of two types:
 - In a closed layer architecture, a layer can only call the next layer immediately down.
 - In an open layer architecture, a layer can call any of the layers below it.
 
-A closed-layer architecture limits the dependencies between layers. However, it might create unnecessary network traffic, if one layer simply passes requests along to the next layer.
+A closed-layer architecture limits the dependencies between layers. Because layers are only dependent on adjacent layers, changes in one layer are less likely to affect distant layers. However, it might create unnecessary network traffic, if one layer simply passes requests along to the next layer. For example,
+
+- A client requests customer details from the Presentation Layer.
+- The Presentation Layer calls the Business Layer.
+- The Business Layer doesn’t process any logic but simply forwards the request to the Data Access Layer.
+- The Data Access Layer fetches data from the Database and returns it.
+- Each step involves network calls, increasing latency.
 
 ## Types of N-Tier architectures
 
@@ -2678,9 +2684,16 @@ Let's look at some examples of N-Tier architecture:
 
 3-Tier is widely used and consists of the following different layers:
 
-- **Presentation layer**: Handles user interactions with the application.
-- **Business Logic layer**: Accepts the data from the application layer, validates it as per business logic and passes it to the data layer.
+- **Presentation layer (client layer)**: Handles user interactions with the application.
+  - The UI/UX that users interact with.
+  - Example: A web page or mobile app.
+- **Business Logic layer (application layer)**: Accepts the data from the presentation layer, validates it as per business logic and passes it to the data layer.
+  - Contains the core logic of the application.
+  - Example: A Django API processing business rules.
 - **Data Access layer**: Receives the data from the business layer and performs the necessary operation on the database.
+  - Handles database communication.
+  - Stores and retrieves data.
+  - Example: An ORM like Django ORM or SQLAlchemy communicate with DB (MySQL or PostgreSQL, etc)
 
 ### 2-Tier architecture
 
@@ -2707,6 +2720,11 @@ Below are some disadvantages of N-tier architecture:
 - Increased network latency as the number of tiers increases.
 - Expensive as every tier will have its own hardware cost.
 - Difficult to manage network security.
+
+Readings:
+
+- [N-Tier Architecture](https://www.baeldung.com/cs/n-tier-architecture)
+- [What Is n-Tier Architecture? | Scott Duffy](https://www.youtube.com/watch?v=gdEZBNUccq8)
 
 # Message Brokers
 
