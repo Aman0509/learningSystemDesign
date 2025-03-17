@@ -2755,6 +2755,34 @@ Event streaming platforms offer more scalability than message brokers but fewer 
 
 Whereas message brokers are a _"lightweight"_ alternative to ESBs that provide similar functionality, a mechanism for inter-service communication, at a lower cost. They're well-suited for use in the [microservices architectures](https://karanpratapsingh.com/courses/system-design/monoliths-microservices#microservices) that have become more prevalent as ESBs have fallen out of favor.
 
+## Message brokers vs RESTFul APIs
+
+Both message brokers and REST APIs are methods of communication between software systems, but they serve different purposes and have distinct characteristics:
+
+**Message Broker:**
+
+- Asynchronous communication model where senders and receivers don't need to interact directly
+- Uses a publish/subscribe or queue-based pattern
+- Decouples systems completely - publishers don't need to know who consumes their messages
+- Handles message persistence, ensuring delivery even if recipients are temporarily unavailable
+- Excellent for event-driven architectures and workload distribution
+- Examples: Apache Kafka, RabbitMQ, Amazon SQS, ActiveMQ
+
+**REST APIs:**
+
+- Synchronous request-response communication model
+- Based on HTTP protocol with standard methods (GET, POST, PUT, DELETE)
+- Direct point-to-point communication between client and server
+- Stateless by design - each request contains all information needed
+- Resource-oriented architecture with well-defined endpoints
+- Simpler to implement for straightforward integrations
+- Examples: Twitter API, GitHub API, most web service APIs
+
+**When to use which:**
+
+- Use REST APIs when you need immediate responses, simple CRUD operations, or direct client-server communication.
+- Use Message Brokers when you need resilience against downtime, event-driven patterns, or need to decouple systems completely.
+
 ## Examples
 
 Here are some commonly used message brokers:
@@ -2763,6 +2791,11 @@ Here are some commonly used message brokers:
 - [Apache Kafka](https://kafka.apache.org)
 - [RabbitMQ](https://www.rabbitmq.com)
 - [ActiveMQ](https://activemq.apache.org)
+
+Readings:
+
+- [Introduction to Message Brokers](https://hasithas.medium.com/introduction-to-message-brokers-c4177d2a9fe3)
+- [What is a Message Broker? & How does it work? | Message Broker vs REST API](https://www.youtube.com/watch?v=GDeK8sBwIug)
 
 # Message Queues
 
