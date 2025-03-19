@@ -2996,6 +2996,12 @@ Below are some widely used Enterprise Service Bus (ESB) technologies:
 - [Apache Camel](https://camel.apache.org)
 - [Fuse ESB](https://www.redhat.com/en/technologies/jboss-middleware/fuse)
 
+Readings:
+
+- [Pub Sub Messaging | Publisher Subscriber(Part 1 of 2) | System Design Tutorials | Part 12 | 2020](https://www.youtube.com/watch?v=EgJ7xts82Mg)
+- [Pub Sub Use Cases | Publisher Subscriber (Part 2 of 2) | System Design Tutorials | Lect 13 | 2020](https://www.youtube.com/watch?v=-vd_Ay0pvFY)
+- [What is Pub/Sub Messaging?](https://aws.amazon.com/what-is/pub-sub-messaging/)
+
 # Monoliths and Microservices
 
 ## Monoliths
