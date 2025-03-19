@@ -2821,6 +2821,28 @@ Let's discuss some advantages of using a message queue:
 - **Performance**: Message queues enable asynchronous communication, which means that the endpoints that are producing and consuming messages interact with the queue, not each other. Producers can add requests to the queue without waiting for them to be processed.
 - **Reliability**: Queues make our data persistent, and reduce the errors that happen when different parts of our system go offline.
 
+## Message Queues vs Message Brokers
+
+Message brokers and message queues are related concepts in distributed computing, but they have some key differences:
+
+**Message Queue:**
+
+- A simple data structure that stores messages in a FIFO (First-In-First-Out) order
+- One sender, one receiver model (point-to-point communication)
+- Messages are consumed only once by a single consumer
+- Once a message is consumed, it's removed from the queue
+- Primarily focused on work distribution and load balancing
+- Examples: Amazon SQS, classic implementations of JMS queues
+
+**Message Broker:**
+
+- A more advanced system that can implement multiple messaging patterns
+- Acts as an intermediary that routes messages between senders and receivers
+- Can support both queue-based and publish/subscribe models
+- Often includes additional features like message transformation, routing, and orchestration
+- Can implement multiple topologies (one-to-one, one-to-many, many-to-many)
+- Examples: RabbitMQ, Apache Kafka, ActiveMQ, IBM MQ
+
 ## Features
 
 Now, let's discuss some desired features of message queues:
@@ -2874,9 +2896,12 @@ If queues start to grow significantly, the queue size can become larger than mem
 Following are some widely used message queues:
 
 - [Amazon SQS](https://aws.amazon.com/sqs)
-- [RabbitMQ](https://www.rabbitmq.com)
-- [ActiveMQ](https://activemq.apache.org)
-- [ZeroMQ](https://zeromq.org)
+
+Readings:
+
+- [Message Queues | Producer Consumer Model | System Design Tutorials | Part 11 | 2020](https://www.youtube.com/watch?v=J6CBdSCB_fY)
+- [What is a MESSAGE QUEUE and Where is it used?](https://www.youtube.com/watch?v=oUJbuFMyBDk)
+- [Asynchronous Systems & Message Queue](https://medium.datadriveninvestor.com/what-is-message-queue-b5468ff6db50)
 
 # Publish-Subscribe
 
